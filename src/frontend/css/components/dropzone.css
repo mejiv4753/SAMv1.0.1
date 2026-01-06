@@ -1,0 +1,169 @@
+/* ==========================
+   DROPZONE MEJORADO CON BOTÓN INTEGRADO
+   ========================== */
+
+.dropzone {
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    padding: 15px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--status-bg);
+    margin-bottom: 12px;
+    position: relative;
+    min-height: 100px;
+}
+
+.dropzone:hover {
+    border-color: #3B82F6;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.dropzone.dragover {
+    border-color: #2563EB;
+    background: rgba(37, 99, 235, 0.1);
+    transform: scale(1.02);
+}
+
+.dropzone.has-file {
+    border-color: #10B981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.dropzone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropzone-icon {
+    font-size: 35px !important;
+    width: 35px !important;
+    height: 35px !important;
+    color: #9CA3AF;
+    transition: all 0.3s ease;
+}
+
+.dropzone:hover .dropzone-icon {
+    color: #3B82F6;
+}
+
+.dropzone.dragover .dropzone-icon {
+    color: #2563EB;
+    transform: scale(1.1);
+}
+
+.dropzone.has-file .dropzone-icon {
+    color: #10B981;
+}
+
+.dropzone-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.dropzone-subtext {
+    font-size: 14px;
+    color: #6B7280;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Botón integrado en el dropzone */
+.dropzone-button {
+    background: #3B82F6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.dropzone-button:hover {
+    background: #2563EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+}
+
+.dropzone-button:active {
+    transform: translateY(0);
+}
+
+.dropzone.dragover .dropzone-button {
+    background: #2563EB;
+}
+
+.dropzone.has-file .dropzone-button {
+    background: #10B981;
+}
+
+.dropzone.has-file .dropzone-button:hover {
+    background: #059669;
+}
+
+.dropzone-preview {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.dropzone-preview img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+/* ==========================
+   INPUT DE ARCHIVO INTEGRADO EN DROPZONE
+   ========================== */
+
+.dropzone-input-container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 8px; /* ← Espacio reducido */
+}
+
+.dropzone-input {
+    width: 100%;
+    padding: 10px 12px; /* ← Padding más compacto */
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 13px; /* ← Texto más pequeño */
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    text-align: center;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.dropzone-input:focus {
+    border-color: #10B981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    outline: none;
+}
+
+/* Preview más compacto */
+.dropzone-preview {
+    margin-top: 12px; /* ← Margen reducido */
+    max-width: 100%;
+}
+
+.dropzone-preview img {
+    max-width: 150px; /* ← Imagen más pequeña */
+    max-height: 100px; /* ← Altura reducida */
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+

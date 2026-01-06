@@ -1,0 +1,190 @@
+/* ==========================
+   BOTONES Y ESTADOS
+   ========================== */
+
+button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button) {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones principales */
+.primary-button {
+    background: #2563EB;
+    color: white;
+    width: auto !important;
+    min-width: 200px;
+    max-width: 300px;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.primary-button:hover {
+    background: #1D4ED8;
+}
+
+.primary-button.compact {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    min-width: 180px;
+}
+
+/* Botón de eliminar */
+.delete-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    transition: all 0.2s ease;
+    color: #ef4444 !important;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    transform: scale(1.1);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+.delete-btn .material-symbols-outlined {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+}
+
+/* Modo oscuro - ajustes para el botón de eliminar */
+body.dark-mode .delete-btn {
+    color: #ff6b6b !important;
+}
+
+body.dark-mode .delete-btn:hover {
+    background: rgba(255, 107, 107, 0.1) !important;
+}
+
+/* ==========================
+   BOTONES MODO CLARO (COLORES SÓLIDOS)
+   ========================== */
+body.light-mode button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button) {
+    background: #3B82F6;
+    color: white;
+}
+
+body.light-mode button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button):hover {
+    background: #2563EB;
+}
+
+body.light-mode .button-group button:not(.sidebar-menu-button) {
+    background: #03087c;
+    color: white;
+}
+
+body.light-mode .button-group button:not(.sidebar-menu-button):hover {
+    background: #020561;
+}
+
+/* ==========================
+   BOTONES MODO OSCURO (MANTENEMOS LOS GRADIENTES)
+   ========================== */
+body.dark-mode button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button) {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    color: white;
+}
+
+body.dark-mode button:not(.sidebar-menu-button):not(.sidebar-toggle):not(.close-button):not(.dropzone-button):hover {
+    background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%);
+}
+
+body.dark-mode .button-group button:not(.sidebar-menu-button) {
+    background: #3A3A4D;
+    color: #EAEAEA;
+}
+
+body.dark-mode .button-group button:not(.sidebar-menu-button):hover {
+    background: #4A4A5D;
+}
+/* ==========================
+   VERSIÓN SIMPLE SIN TOOLTIP CSS
+   ========================== */
+.status-box-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+.status-clear-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+    background: transparent !important;
+    border: none !important;
+    padding: 6px !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    transition: all 0.2s ease;
+    color: #6B7280 !important;
+    opacity: 0.7;
+}
+
+.status-clear-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #EF4444 !important;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.status-clear-btn .material-symbols-outlined {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+}
+
+.status-box {
+    padding: 15px 40px 15px 15px !important;
+    min-height: 80px;
+    max-height: 150px;
+    overflow-y: auto;
+    background: var(--status-bg);
+    border: 1px solid var(--status-border);
+    line-height: 1.4;
+    position: relative;
+}
+
+/* Modo oscuro */
+body.dark-mode .status-clear-btn {
+    color: #9CA3AF !important;
+}
+
+body.dark-mode .status-clear-btn:hover {
+    background: rgba(255, 107, 107, 0.1) !important;
+    color: #FF6B6B !important;
+}

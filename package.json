@@ -1,0 +1,77 @@
+{
+  "name": "mi-app-whatsapp",
+  "version": "1.0.1",
+  "description": "Hola soy SAM!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.tuempresa.miappwhatsapp",
+    "productName": "SAM",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "node_modules/**/*",
+      "!node_modules/*/{CHANGELOG.md,README.md,test,__tests__,examples}",
+      "!**/*.map"
+    ],
+    "asar": false,
+    "asarUnpack": [
+      "**/node_modules/canvas/**",
+      "**/node_modules/sharp/**",
+      "**/node_modules/@img/**"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/puppeteer-core/.local-chromium/win64-1045629/chrome-win/**/*",
+        "to": "chrome-win"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "mejiv4753",
+        "repo": "SamWp"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "dependencies": {
+    "canvas": "^3.2.0",
+    "electron-updater": "^6.0.0",
+    "node-schedule": "^2.1.1",
+    "whatsapp-web.js": "^1.34.2"
+  },
+  "devDependencies": {
+    "electron": "^26.6.10",
+    "electron-builder": "^24.13.3"
+  }
+}

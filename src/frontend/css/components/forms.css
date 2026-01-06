@@ -1,0 +1,110 @@
+/* ==========================
+   FORMULARIOS, INPUTS Y TEXTAREA
+   ========================== */
+
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+    border: 2px solid;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    width: 100%;
+    font-weight: 400;
+}
+
+/* Modo claro para inputs */
+body.light-mode input[type="text"],
+body.light-mode input[type="date"],
+body.light-mode input[type="time"] {
+    border-color: #E0E0E0;
+    background: white;
+    color: #333;
+}
+
+body.light-mode input[type="text"]:focus,
+body.light-mode input[type="date"]:focus,
+body.light-mode input[type="time"]:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Modo oscuro para inputs */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="date"],
+body.dark-mode input[type="time"] {
+    border-color: #444;
+    background: #2A2A3C;
+    color: #EAEAEA;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode input[type="date"]:focus,
+body.dark-mode input[type="time"]:focus {
+    border-color: #00ff6a;
+    box-shadow: 0 0 0 3px rgba(0, 255, 106, 0.1);
+}
+
+/* Placeholder styles */
+input::placeholder {
+    color: #999;
+    opacity: 1;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+body.dark-mode input::placeholder {
+    color: #888;
+}
+
+/* Formularios */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+/* ==========================
+   TEXTAREA MENSAJE
+   ========================== */
+#mensaje {
+    width: 100%;
+    min-height: 70px;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 2px solid #E0E0E0;
+    resize: vertical;
+    font-size: 14px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+body.light-mode #mensaje {
+    border-color: #E0E0E0;
+    background: white;
+    color: #333;
+}
+
+body.light-mode #mensaje:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+body.dark-mode #mensaje {
+    border-color: #444;
+    background: #2A2A3C;
+    color: #EAEAEA;
+}
+
+body.dark-mode #mensaje:focus {
+    border-color: #00ff6a;
+    box-shadow: 0 0 0 3px rgba(0, 255, 106, 0.1);
+    outline: none;
+}

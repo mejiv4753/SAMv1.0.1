@@ -1,0 +1,41 @@
+/* ==========================
+   SISTEMA DE GRID
+   ========================== */
+
+.datetime-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.datetime-group div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.button-group.compact {
+    gap: 8px;
+}
+
+.button-group.compact button {
+    padding: 10px 15px;
+    font-size: 13px;
+}
+
+.button-group.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.button-group.horizontal button {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}

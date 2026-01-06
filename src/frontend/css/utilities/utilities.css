@@ -1,0 +1,133 @@
+/* ==========================
+   CLASES UTILITARIAS Y MISCELÁNEOS
+   ========================== */
+
+/* Iconos Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.material-symbols-outlined.standalone {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Iconos inline en botones y textos */
+button .material-symbols-outlined,
+label .material-symbols-outlined,
+h2 .material-symbols-outlined,
+h3 .material-symbols-outlined {
+    margin-right: 8px;
+    vertical-align: -0.25em;
+}
+
+/* Iconos en la barra lateral */
+.sidebar-menu-button .material-symbols-outlined {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Iconos en header */
+.header .material-symbols-outlined {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Close button icon */
+.close-button .material-symbols-outlined {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+/* ==========================
+   SPINNER DE CONEXIÓN
+   ========================== */
+.connection-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #25D366;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.connection-spinner p {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Modo oscuro para spinner */
+body.dark-mode .spinner {
+    border: 4px solid #333;
+    border-top: 4px solid #00ff6a;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 10px 10px 10px;
+    margin-top: 30px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--text-color);
+    opacity: 0.7;
+    border-top: 1px solid var(--card-border);
+}
+
+/* Ocultar el switch original del modo */
+.mode-switch {
+    display: none !important;
+}
+
+/* Asegurar que en modo claro también herede estos estilos */
+body.light-mode .primary-button {
+    width: auto !important;
+    min-width: 200px;
+    max-width: 300px;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+/* Asegurar que en modo oscuro también herede estos estilos */
+body.dark-mode .primary-button {
+    width: auto !important;
+    min-width: 200px;
+    max-width: 300px;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+/* Si el botón está dentro de un contenedor flex, asegurar alineación */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

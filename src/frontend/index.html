@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp Scheduler</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Iconos Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
+
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="light-mode">
+    <div class="main-content">
+        <!-- Barra lateral -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-group">
+                    <div class="sidebar-group-label">Acciones Rápidas</div>
+                    <div class="sidebar-group-content">
+                        <div class="sidebar-menu">
+                            <!-- Agregar después del botón de "Envíos Programados" -->
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" onclick="mostrarGeneradorNumeros()">
+                                    <span class="material-symbols-outlined icon">shuffle</span>
+                                    <span>Generar Claves</span>
+                                </button>
+                            </div>
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" onclick="testEnvioInmediato()">
+                                    <span class="material-symbols-outlined icon">science</span>
+                                    <span>Test Envío</span>
+                                </button>
+                            </div>
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" onclick="mostrarConfiguracionNotificaciones()">
+                                    <span class="material-symbols-outlined icon">notifications</span>
+                                    <span>Notificaciones</span>
+                                </button>
+                            </div>
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" onclick="forzarNuevoQR()">
+                                    <span class="material-symbols-outlined icon">qr_code</span>
+                                    <span>Nuevo QR</span>
+                                </button>
+                            </div>
+                            <!-- NUEVO BOTÓN PARA ENVÍOS PROGRAMADOS -->
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" onclick="mostrarEnviosProgramados()">
+                                    <span class="material-symbols-outlined icon">event_upcoming</span>
+                                    <span>Envíos Programados</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="sidebar-group">
+                    <div class="sidebar-group-label">Configuración</div>
+                    <div class="sidebar-group-content">
+                        <div class="sidebar-menu">
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button" id="toggle-theme-btn">
+                                    <span class="material-symbols-outlined icon" id="theme-icon">dark_mode</span>
+                                    <span id="theme-text">Modo Oscuro</span>
+                                </button>
+                            </div>
+                            <div class="sidebar-menu-item">
+                                <button class="sidebar-menu-button logout-btn" onclick="cerrarSesion()">
+                                    <span class="material-symbols-outlined icon">logout</span>
+                                    <span>Cerrar Sesión</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <span class="material-symbols-outlined icon standalone">menu</span>
+                </button>
+                <h1>SAM for WhatsApp</h1>
+                <div class="status-wrapper">
+                    <span class="status-label" id="status-text">Conectando...</span>
+                </div>
+            </div>
+
+            <!-- Container para configuración de notificaciones (modal) -->
+            <div class="notifications-container" id="notificationsContainer" style="display: none;">
+                <div class="notification-config">
+                    <button class="close-button" onclick="cancelarConfiguracionNotificaciones()">
+                        <span class="material-symbols-outlined icon">close</span>
+                    </button>
+
+                    <div class="notification-header">
+                        <span class="material-symbols-outlined icon large">notifications</span>
+                        <h3>Configurar Notificaciones</h3>
+                    </div>
+
+                    <p class="notification-description">
+                        Ingresa el nombre exacto del grupo o chat donde quieres recibir notificaciones:
+                    </p>
+
+                    <!-- Configuración actual -->
+                    <div class="current-config-section" id="currentConfigSection" style="display: none;">
+                        <div class="config-badge">
+                            <span class="material-symbols-outlined icon">check_circle</span>
+                            <div class="config-info">
+                                <span class="config-label">Configuración actual:</span>
+                                <span class="config-value" id="currentConfigValue">Grupo Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo de entrada -->
+                    <div class="input-group">
+                        <label for="grupoNotificaciones" class="input-label">
+                            <span class="material-symbols-outlined icon">group</span>
+                            Nombre del Grupo/Usuario
+                        </label>
+                        <input type="text" id="grupoNotificaciones" placeholder="Ejemplo: Grupo de Notificaciones"
+                            class="notification-input" />
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="notification-actions">
+                        <button class="btn-modify" onclick="habilitarModificacion()" id="modifyButton"
+                            style="display: none;">
+                            <span class="material-symbols-outlined icon">edit</span>
+                            Modificar
+                        </button>
+                        <button class="btn-secondary" onclick="cancelarConfiguracionNotificaciones()">
+                            <span class="material-symbols-outlined icon">close</span>
+                            Cancelar
+                        </button>
+                        <button class="btn-primary" onclick="guardarConfiguracionNotificaciones()" id="saveButton">
+                            <span class="material-symbols-outlined icon">save</span>
+                            Guardar Configuración
+                        </button>
+                    </div>
+
+                    <div id="estadoNotificaciones" class="status-notificaciones"></div>
+                </div>
+            </div>
+
+            <!-- NUEVO: Container para mostrar envíos programados (modal) -->
+            <div class="envios-container" id="enviosContainer" style="display: none;">
+                <div class="envios-modal">
+                    <button class="close-button" onclick="cancelarVerEnvios()">
+                        <span class="material-symbols-outlined icon">close</span>
+                    </button>
+
+                    <div class="envios-header">
+                        <span class="material-symbols-outlined icon large">event_upcoming</span>
+                        <div style="margin-left: 12px; padding-top: 8px;">
+                            <h3>Envíos Programados</h3>
+                        </div>
+                    </div>
+
+                    <p class="envios-description">
+                        Aquí puedes ver, gestionar y eliminar todos los envíos programados:
+                    </p>
+
+                    <!-- Lista de envíos -->
+                    <div id="envios-lista" class="envios-lista">
+                        <p>Cargando envíos programados...</p>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="envios-actions">
+                        <button class="btn-secondary" onclick="cancelarVerEnvios()">
+                            <span class="material-symbols-outlined icon">close</span>
+                            Cerrar
+                        </button>
+                        <button class="btn-primary" onclick="cargarJobsProgramados()">
+                            <span class="material-symbols-outlined icon">refresh</span>
+                            Actualizar Lista
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL PARA GENERADOR DE NÚMEROS -->
+            <div class="numbers-container" id="numbersContainer" style="display: none;">
+                <div class="numbers-modal">
+                    <button class="close-button" onclick="cancelarGeneradorNumeros()">
+                        <span class="material-symbols-outlined icon">close</span>
+                    </button>
+
+                    <div class="numbers-header">
+                        <span class="material-symbols-outlined icon large">shuffle</span>
+                        <div style="margin-left: 12px; padding-top: 23px;">
+                            <h3>Generador de Claves</h3>
+                        </div>
+                    </div>
+                    <!-- Ruta de guardado -->
+                    <div class="path-section">
+                        <label for="rutaGuardado">
+                            <span class="material-symbols-outlined icon">folder_open</span>
+                            Ruta para guardar imágenes:
+                        </label>
+                        <div class="input-label">
+                            <input type="text" id="rutaGuardado" placeholder="Selecciona una carpeta." readonly />
+                            <button class="btn-secondary" onclick="seleccionarCarpetaGuardado()">
+                                <span class="material-symbols-outlined icon">folder</span>
+                                Seleccionar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grid de la semana -->
+                    <div class="week-numbers-grid" id="weekNumbersGrid">
+                        <!-- Los días se generarán aquí dinámicamente -->
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="numbers-actions">
+                        <button class="btn-secondary" onclick="limpiarNumerosGenerados()">
+                            <span class="material-symbols-outlined icon">delete_sweep</span>
+                            Cancelar
+                        </button>
+                        <button class="btn-primary" id="btnGenerateWeekNumbers" onclick="generarSemanaNumeros()">
+                            <span class="material-symbols-outlined icon">shuffle</span>
+                            Generar Semana
+                        </button>
+                        <button class="btn-success" id="btnConfirmNumbers" onclick="confirmarYGuardarNumeros()"
+                            disabled>
+                            <span class="material-symbols-outlined icon">check_circle</span>
+                            Confirmar
+                        </button>
+                    </div>
+
+                    <!-- Estado -->
+                    <div id="numbersEstado" class="numbers-estado"></div>
+                </div>
+            </div>
+
+            <!-- Layout de dos columnas (MODIFICADO - sin la card de próximos envíos) -->
+            <div class="main-layout">
+                <!-- Columna izquierda: SOLO Programar Envíos -->
+                <div class="column left-column">
+                    <div class="card">
+                        <h2>
+                            <span class="material-symbols-outlined icon">send</span>
+                            Programar Envíos
+                        </h2>
+                        <div class="form-container">
+                            <!-- ... (todo el formulario se mantiene igual) ... -->
+                            <!-- Mantén todo el contenido del formulario existente -->
+
+                            <label>
+                                <span class="material-symbols-outlined icon">image</span>
+                                Seleccione la imagen a enviar:
+                            </label>
+
+                            <div class="dropzone" id="imageDropzone">
+                                <div class="dropzone-content">
+                                    <span class="material-symbols-outlined dropzone-icon">cloud_upload</span>
+                                    <p class="dropzone-text">Arrastra tu imagen aquí</p>
+                                    <p class="dropzone-subtext">o</p>
+                                    <button class="dropzone-button" id="seleccionarArchivoBtn">
+                                        <span class="material-symbols-outlined icon">folder_open</span>
+                                        Seleccionar archivo
+                                    </button>
+                                    <p class="dropzone-subtext">Formatos: JPG, PNG, GIF, WebP</p>
+
+                                    <div class="dropzone-input-container" style="display: none;">
+                                        <input type="text" class="dropzone-input" id="imagen-path"
+                                            placeholder="Ningún archivo seleccionado" readonly />
+                                    </div>
+                                </div>
+                                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.gif,.webp"
+                                    style="display: none;" />
+                            </div>
+
+                            <label for="mensaje">
+                                <span class="material-symbols-outlined icon">message</span>
+                                Mensaje a enviar (opcional):
+                            </label>
+                            <textarea id="mensaje"
+                                placeholder="Escribe aquí el texto que acompañará la imagen..."></textarea>
+
+                            <label for="grupo">
+                                <span class="material-symbols-outlined icon">groups</span>
+                                Grupos (separados por coma):
+                            </label>
+                            <div class="input-with-button">
+                                <input type="text" id="grupo" placeholder="Ejemplo: Grupo A, Grupo B, Grupo C"
+                                    class="grupo-input-with-button"
+                                    onkeydown="if(event.key === 'Enter') validarGrupos()" />
+                                <button id="btnValidarGrupos" class="validar-grupos-btn" onclick="validarGrupos()">
+                                    <span class="material-symbols-outlined">search</span>
+                                </button>
+                            </div>
+                            <!-- SEPARADO - FUERA del contenedor del input y botón -->
+                            <div id="validacionResultados" class="validation-results">
+                                <div class="validation-header" onclick="toggleValidationResults()">
+                                    <h4>
+                                        <span class="material-symbols-outlined icon">fact_check</span>
+                                        Resultados de Validación
+                                    </h4>
+                                    <span class="material-symbols-outlined toggle-icon">expand_less</span>
+                                </div>
+                                <div id="validacionContenido" class="validation-content">
+                                    <!-- Los resultados se mostrarán aquí -->
+                                </div>
+                            </div>
+
+                            <div class="datetime-group">
+                                <div>
+                                    <label for="fecha">
+                                        <span class="material-symbols-outlined icon">calendar_month</span>
+                                        Fecha de Envío:
+                                    </label>
+                                    <input type="date" id="fecha" />
+                                </div>
+                                <div>
+                                    <label for="hora">
+                                        <span class="material-symbols-outlined icon">schedule</span>
+                                        Hora de Envío:
+                                    </label>
+                                    <input type="time" id="hora" />
+                                </div>
+                            </div>
+
+                            <button class="primary-button" onclick="programar()">
+                                <span class="material-symbols-outlined icon">schedule_send</span>
+                                Programar Envío
+                            </button>
+                        </div>
+                    </div>
+                    <!-- SE ELIMINA LA CARD DE "Próximos envíos programados" -->
+                </div>
+
+                <!-- Columna derecha: Estado y controles (SE MANTIENE IGUAL) -->
+                <div class="column right-column">
+                    <div class="card connection-card" id="connectionCard">
+                        <div class="card-status-indicator"></div>
+                        <h2>
+                            <span class="material-symbols-outlined icon">link</span>
+                            Estado de Conexión
+                        </h2>
+                        <div id="qrContainer">
+                            <p>Esperando el código QR...</p>
+                        </div>
+                        <div class="status-box-container">
+                            <button onclick="limpiarLogs()" class="status-clear-btn" title="Limpiar logs">
+                                <span class="material-symbols-outlined icon">delete_sweep</span>
+                            </button>
+                            <div id="estado" class="status-box">Iniciando conexión.</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>
+                            <span class="material-symbols-outlined icon">notifications</span>
+                            Estado de Notificaciones
+                        </h3>
+                        <div id="estado-actual-notificaciones" class="notifications-status">
+                            <p>Aquí se muestra el estado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer style="text-align: center; padding: 10px; margin-top: 20px;">
+                <p>Sistema de Automatización de Mensajes v1.0.1 &copy; 2026</p>
+            </footer>
+        </div>
+        <!-- Modal de Actualizaciones Mejorado -->
+        <div id="updateModal" class="update-modal">
+            <div class="update-modal-content">
+                <!-- Header -->
+                <div class="update-header">
+                    <span class="material-symbols-outlined update-icon" id="updateIcon">system_update</span>
+                    <h3 id="updateTitle">Actualización disponible</h3>
+                    <button id="closeUpdateModal" class="update-close-btn" aria-label="Cerrar">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <!-- Contenido dinámico -->
+                <div class="update-body">
+                    <p id="updateMessage" class="update-message">Se ha encontrado una nueva versión de la aplicación.
+                    </p>
+
+                    <!-- Barra de progreso -->
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-info">
+                            <span id="progressText">0%</span>
+                            <span id="speedText" class="speed-text">0 KB/s</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span id="transferredText">0 MB</span>
+                            <span id="totalText">0 MB</span>
+                        </div>
+                    </div>
+
+                    <!-- Detalles de versión -->
+                    <div class="version-info" id="versionInfo" style="display: none;">
+                        <span class="material-symbols-outlined">info</span>
+                        Nueva versión: <strong id="newVersion">1.0.1</strong>
+                    </div>
+                </div>
+
+                <!-- Footer con botones -->
+                <div class="update-footer">
+                    <button class="update-btn secondary" id="laterBtn" style="display: none;">
+                        <span class="material-symbols-outlined">schedule</span>
+                        Más tarde
+                    </button>
+                    <button class="update-btn primary" id="actionBtn">
+                        <span class="material-symbols-outlined" id="actionIcon">download</span>
+                        <span id="actionText">Descargar actualización</span>
+                    </button>
+                    <button class="update-btn success" id="installBtn" style="display: none;">
+                        <span class="material-symbols-outlined">install_desktop</span>
+                        Instalar y reiniciar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+/* ==========================
+   TARJETAS Y CONTENEDORES
+   ========================== */
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+}
+
+/* Status box */
+.status-box {
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    min-height: 80px;
+    max-height: 150px;
+    overflow-y: auto;
+    background: var(--status-bg);
+    border: 1px solid var(--status-border);
+    line-height: 1.4;
+}
+
+/* Lista de envíos */
+.envios-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.envio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    background: var(--envio-item-bg);
+    border-left: 4px solid var(--accent-color);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.envio-content {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Efecto hover en el item completo */
+.envio-item:hover {
+    background: var(--status-bg);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para envíos que ya pasaron su fecha */
+.envio-pasado {
+    opacity: 0.7;
+    border-left-color: #6B7280 !important;
+    background: #f3f4f6 !important;
+}
+
+body.dark-mode .envio-pasado {
+    background: #374151 !important;
+}
+
+.envio-pasado .delete-btn {
+    color: #6B7280 !important;
+}
+
+/* Notificaciones */
+.notifications-status {
+    margin-top: 15px;
+}
+
+/* QR Container */
+#qrContainer {
+    text-align: center;
+    margin: 15px 0;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

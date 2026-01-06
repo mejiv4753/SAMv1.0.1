@@ -1,0 +1,56 @@
+/* ==========================
+   HEADER Y NAVEGACIÓN
+   ========================== */
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    gap: 15px;
+}
+
+.header h1 {
+    margin: 0;
+    text-align: center;
+    flex: 1;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    z-index: 101;
+    font-family: inherit;
+}
+
+.sidebar-toggle:hover {
+    background: var(--status-bg);
+    transform: scale(1.05);
+}
+
+/* ===== Etiquetas para LED y Switch ===== */
+.status-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-label {
+    font-size: 13px;
+    color: var(--text-color);
+    font-weight: 500;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}

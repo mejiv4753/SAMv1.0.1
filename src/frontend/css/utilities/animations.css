@@ -1,0 +1,83 @@
+/* ==========================
+   ANIMACIONES Y KEYFRAMES
+   ========================== */
+
+/* Glow animations */
+@keyframes glow-green {
+    from {
+        box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 
+                    0 0 20px rgba(16, 185, 129, 0.3);
+    }
+    to {
+        box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.2), 
+                    0 0 30px rgba(16, 185, 129, 0.5);
+    }
+}
+
+@keyframes glow-red {
+    from {
+        box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.1), 
+                    0 0 20px rgba(239, 68, 68, 0.3);
+    }
+    to {
+        box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.2), 
+                    0 0 30px rgba(239, 68, 68, 0.5);
+    }
+}
+
+@keyframes glow-amber {
+    from {
+        box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.1), 
+                    0 0 20px rgba(245, 158, 11, 0.3);
+    }
+    to {
+        box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2), 
+                    0 0 30px rgba(245, 158, 11, 0.5);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+    }
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

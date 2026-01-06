@@ -1,0 +1,332 @@
+/* ==========================
+   BARRA LATERAL
+   ========================== */
+
+/* .sidebar {
+    width: 250px;
+    background: var(--card-bg);
+    border-right: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.sidebar-collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden;
+    border-right: none;
+}
+
+.sidebar-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.sidebar-group {
+    margin-bottom: 20px;
+}
+
+.sidebar-group-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.sidebar-group-content {
+    margin-top: 10px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu-item {
+    margin-bottom: 4px;
+}
+
+.sidebar-menu-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.sidebar-menu-button:hover {
+    background: var(--status-bg);
+    transform: translateX(2px);
+}
+
+.sidebar-menu-button .material-symbols-outlined {
+    opacity: 0.8;
+}
+
+.logout-btn {
+    color: #ef4444 !important;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+.logout-btn .material-symbols-outlined {
+    color: #ef4444 !important;
+}
+
+.separator {
+    height: 1px;
+    background: var(--card-border);
+    margin: 16px 0;
+} */
+
+
+
+/*Modificaciones 10'12'25*/
+/* ==========================
+   BARRA LATERAL
+   ========================== */
+
+.sidebar {
+    width: 70px;                /* Tamaño contraído (cambia de 250px) */
+    background: var(--card-bg);
+    border-right: 1px solid var(--card-border);
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;         /* Añadido para ocultar desbordamiento horizontal */
+    flex-shrink: 0;
+    position: fixed;            /* Cambiado a fixed para que esté siempre visible */
+    left: 0;
+    top: 0;
+    height: 100vh;              /* Añadido para altura completa */
+    z-index: 100;
+}
+
+/* Efecto hover para expandir */
+.sidebar:hover {
+    width: 250px;               /* Tamaño expandido */
+}
+
+.sidebar.sidebar-collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden;
+    border-right: none;
+}
+
+.sidebar-content {
+    padding: 20px 0;           /* Cambiado padding horizontal a 0 */
+    flex: 1;
+}
+
+.sidebar-group {
+    margin-bottom: 5px;
+    padding: 0 5px;           /* Añadido padding interno */
+}
+
+.sidebar-group:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-group-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0;                 /* Cambiado de 0.7 a 0 (oculto por defecto) */
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;       /* Añadido para evitar saltos de línea */
+}
+
+/* Mostrar label al expandir */
+.sidebar:hover .sidebar-group-label {
+    opacity: 0.7;
+}
+
+.sidebar-group-content {
+    margin-top: 10px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu-item {
+    margin-bottom: 4px;
+}
+
+.sidebar-menu-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;       /* Aumentado padding horizontal */
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 500;
+    gap: 15px;                /* Añadido espacio entre icono y texto */
+}
+
+.sidebar-menu-button:hover {
+    background: var(--status-bg);
+    transform: translateX(2px);
+}
+
+.sidebar-menu-button .material-symbols-outlined {
+    opacity: 0.8;
+    font-size: 22px;          /* Añadido tamaño consistente */
+    min-width: 30px;          /* Añadido ancho mínimo para iconos */
+    text-align: center;       /* Centrar iconos */
+}
+
+/* Ocultar texto por defecto */
+.sidebar-menu-button span:not(.material-symbols-outlined) {
+    opacity: 0;
+    white-space: nowrap;      /* Evitar saltos de línea */
+    transition: opacity 0.3s ease;
+}
+
+/* Mostrar texto al expandir */
+.sidebar:hover .sidebar-menu-button span:not(.material-symbols-outlined) {
+    opacity: 1;
+}
+
+.logout-btn {
+    color: #ef4444 !important;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+.logout-btn .material-symbols-outlined {
+    color: #ef4444 !important;
+}
+
+.separator {
+    height: 1px;
+    background: var(--card-border);
+    margin: 20px 15px;        /* Ajustado margen horizontal */
+    transition: all 0.3s ease;
+}
+
+/* Ajustar margen al expandir */
+.sidebar:hover .separator {
+    margin: 20px;
+}
+
+/* ==========================
+   CONTENIDO PRINCIPAL
+   ========================== */
+
+.main-content {
+    margin-left: 70px;         /* Añadido margen para el sidebar contraído */
+    transition: margin-left 0.3s ease;
+    width: calc(100% - 70px);
+}
+
+/* Ajustar contenido cuando sidebar se expande */
+.sidebar:hover ~ .main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+/* ==========================
+   RESPONSIVE
+   ========================== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+    
+    .sidebar:hover {
+        width: 70px;           /* Desactivar hover en móvil */
+    }
+    
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+    
+    .sidebar:hover ~ .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+    
+    /* Mostrar texto en móvil solo con clase activa */
+    .sidebar.active {
+        width: 260px;
+    }
+    
+    .sidebar.active .sidebar-group-label,
+    .sidebar.active .sidebar-menu-button span:not(.material-symbols-outlined) {
+        opacity: 1;
+    }
+    
+    .sidebar.active ~ .main-content {
+        margin-left: 260px;
+        width: calc(100% - 260px);
+    }
+    
+    /* Esconder el botón de toggle si no es necesario */
+    .sidebar-toggle {
+        display: block !important;
+    }
+}
+
+/* ==========================
+   BOTÓN TOGGLE (si lo mantienes para móvil)
+   ========================== */
+
+/* .sidebar-toggle {
+    display: none;           
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 101;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+} */

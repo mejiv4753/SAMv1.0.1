@@ -1,0 +1,161 @@
+/* ==========================
+   VARIABLES CSS - MODOS CLARO/OSCURO
+   ========================== */
+
+:root {
+    /* Modo claro (default) */
+    --bg-color: #f5f5f5;
+    --text-color: #1E293B;
+    --card-bg: #FFFFFF;
+    --card-border: #E2E8F0;
+    --primary-color: #1D4ED8;
+    --secondary-color: #2563EB;
+    --status-bg: #F1F5F9;
+    --status-border: #E2E8F0;
+    --envio-item-bg: #F8FAFC;
+    --accent-color: #2563EB;
+    
+    /* ===== VARIABLES ESPECÍFICAS PARA VALIDACIÓN ===== */
+    --grupo-input-bg: white;
+    --grupo-input-border: #d1d5db;
+    --grupo-input-color: #374151;
+    --grupo-input-hover: #9ca3af;
+    --grupo-input-focus: #3b82f6;
+    --grupo-input-shadow: rgba(59, 130, 246, 0.1);
+    
+    /* Botón validación */
+    --btn-bg: #eff6ff;
+    --btn-color: #3b82f6;
+    --btn-hover-bg: #dbeafe;
+    --btn-hover-color: #1d4ed8;
+    
+    /* Resultados validación */
+    --results-bg: #f8fafc;
+    --results-border: #e2e8f0;
+    --header-bg: #f8fafc;
+    --header-color: #1e293b;
+    --toggle-color: #64748b;
+    
+    /* Scrollbar */
+    --scroll-track: #f1f5f9;
+    --scroll-thumb: #cbd5e1;
+    --scroll-thumb-hover: #94a3b8;
+    
+    /* Estados validación */
+    --success-bg: rgba(16, 185, 129, 0.1);
+    --success-border: #10b981;
+    --success-color: #065f46;
+    --warning-bg: rgba(245, 158, 11, 0.1);
+    --warning-border: #f59e0b;
+    --warning-color: #92400e;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --error-border: #ef4444;
+    --error-color: #991b1b;
+    
+    /* Items grupos */
+    --group-valid-bg: rgba(59, 130, 246, 0.05);
+    --group-valid-border: #3b82f6;
+    --group-individual-bg: rgba(139, 92, 246, 0.05);
+    --group-individual-border: #8b5cf6;
+    --group-invalid-bg: rgba(239, 68, 68, 0.05);
+    --group-invalid-border: #ef4444;
+    
+    /* Textos validación */
+    --group-name-color: #1e293b;
+    --group-meta-color: #64748b;
+    --stats-bg: #f1f5f9;
+    --stat-label-color: #64748b;
+}
+
+body.dark-mode {
+    /* Modo oscuro */
+    --bg-color: #121212;
+    --text-color: #EAEAEA;
+    --card-bg: #1E1E2E;
+    --card-border: #333;
+    --primary-color: #00ff6a;
+    --secondary-color: #66BB6A;
+    --status-bg: #2A2A3C;
+    --status-border: #333;
+    --envio-item-bg: #2A2A3C;
+    --accent-color: #00ff6a;
+    
+    /* ===== VARIABLES ESPECÍFICAS PARA VALIDACIÓN ===== */
+    --grupo-input-bg: #1f2937;
+    --grupo-input-border: #374151;
+    --grupo-input-color: #f9fafb;
+    --grupo-input-hover: #4b5563;
+    --grupo-input-focus: #3b82f6;
+    --grupo-input-shadow: rgba(59, 130, 246, 0.2);
+    
+    /* Botón validación */
+    --btn-bg: #1e3a8a;
+    --btn-color: #93c5fd;
+    --btn-hover-bg: #1e40af;
+    --btn-hover-color: #bfdbfe;
+    
+    /* Resultados validación */
+    --results-bg: #1f2937;
+    --results-border: #374151;
+    --header-bg: #1f2937;
+    --header-color: #f9fafb;
+    --toggle-color: #9ca3af;
+    
+    /* Scrollbar */
+    --scroll-track: #374151;
+    --scroll-thumb: #4b5563;
+    --scroll-thumb-hover: #6b7280;
+    
+    /* Estados validación */
+    --success-bg: rgba(16, 185, 129, 0.15);
+    --success-border: #10b981;
+    --success-color: #a7f3d0;
+    --warning-bg: rgba(245, 158, 11, 0.15);
+    --warning-border: #f59e0b;
+    --warning-color: #fde68a;
+    --error-bg: rgba(239, 68, 68, 0.15);
+    --error-border: #ef4444;
+    --error-color: #fecaca;
+    
+    /* Items grupos */
+    --group-valid-bg: rgba(59, 130, 246, 0.1);
+    --group-valid-border: #3b82f6;
+    --group-individual-bg: rgba(139, 92, 246, 0.1);
+    --group-individual-border: #8b5cf6;
+    --group-invalid-bg: rgba(239, 68, 68, 0.1);
+    --group-invalid-border: #ef4444;
+    
+    /* Textos validación */
+    --group-name-color: #f9fafb;
+    --group-meta-color: #9ca3af;
+    --stats-bg: #374151;
+    --stat-label-color: #9ca3af;
+}
+
+/* ==========================
+   APLICACIÓN DE VARIABLES GLOBALES
+   ========================== */
+
+/* Aplicar variables base */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos de cards con transición suave */
+.card {
+    transition: all 0.3s ease;
+}
+
+body.light-mode .card {
+    background: var(--card-bg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--card-border);
+}
+
+body.dark-mode .card {
+    background: var(--card-bg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+}

@@ -1,0 +1,469 @@
+/* =============================================
+   GENERADOR DE NÚMEROS - ESTILOS MEJORADOS
+============================================= */
+
+.numbers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(3px);
+}
+
+.numbers-modal {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    position: relative;
+}
+
+.numbers-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.numbers-header .icon.large {
+    font-size: 40px;
+    color: var(--accent-color);
+}
+
+.numbers-description {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* MEJORADO: Input de ruta con mejor contraste */
+.path-section {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.107);
+}
+
+.path-section label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.path-section .input-label {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    padding: 0 4px 0 15px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.path-section .input-label:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.path-section input {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    height: 36px;
+    outline: none;
+    box-shadow: none;
+}
+
+.path-section input:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.path-section input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.path-section .btn-secondary {
+    flex-shrink: 0;
+    padding: 8px 15px;
+    height: auto;
+}
+
+/* MEJORADO: Cards de los días con contorno siempre visible */
+.week-numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Centrar última fila (Viernes, Sábado, Domingo) */
+.week-numbers-grid::after {
+    content: "";
+    grid-column: 1 / -1;
+}
+
+/* Card del día - MEJORADA CON TAMAÑO FIJO Y CONTORNO VISIBLE */
+.day-numbers-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 210px; /* Altura fija */
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* Asegurar contraste en ambos modos */
+    border-color: var(--card-border);
+}
+
+.day-numbers-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-color);
+}
+
+.day-numbers-card.generated {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.03) 0%, 
+        rgba(16, 185, 129, 0.08) 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+/* ESTILOS PARA CARDS SIN NÚMEROS - CONTORNO MÁS DEFINIDO */
+.day-numbers-card:not(.generated) {
+    border-style: solid;
+    border-width: 2px;
+    /* Fondo sutil para mejorar visibilidad */
+    background: var(--card-bg);
+}
+
+/* Indicador de check verde */
+.check-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    animation: checkBounce 0.5s ease;
+}
+
+.check-indicator .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--success-color);
+    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+}
+
+@keyframes checkBounce {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Header del día */
+.day-numbers-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.day-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.day-status {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: var(--border-light);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.day-status.generated {
+    background: var(--success-color);
+    color: white;
+}
+
+/* Grid de números */
+.numbers-display-grid {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex: 1;
+    align-items: center;
+}
+
+.number-circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #2563eb 100%);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.number-circle:hover {
+    transform: scale(1.1);
+}
+
+/* Estado vacío - MEJORADO PARA MEJOR VISIBILIDAD */
+.empty-numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 10px 0;
+}
+
+.empty-symbol {
+    font-size: 56px;
+    font-weight: 100;
+    color: var(--border-light);
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0.6;
+}
+
+.empty-numbers p {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.7;
+}
+
+/* Botón redondo - FORZADO COMPLETAMENTE CIRCULAR Y CENTRADO */
+.day-generate-btn-round {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #2563eb 100%) !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.day-generate-btn-round:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.day-generate-btn-round:active {
+    transform: scale(0.95);
+}
+
+.day-generate-btn-round .material-symbols-outlined {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 20px;
+    height: 20px;
+}
+
+/* Para cards con números generados (botón de refresh) */
+.day-numbers-card.generated .day-generate-btn-round {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.day-numbers-card.generated .day-generate-btn-round:hover {
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+/* Botones de acción - NUEVO ORDEN */
+.numbers-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Orden específico para los botones */
+.numbers-actions .btn-secondary {
+    margin-right: auto; /* Empuja a la izquierda */
+    order: 1;
+}
+
+.numbers-actions .btn-primary {
+    order: 2;
+}
+
+.numbers-actions .btn-success {
+    order: 3;
+}
+
+/* Estado */
+.numbers-estado {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.numbers-estado.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.numbers-estado.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+}
+
+.numbers-estado.info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .week-numbers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .numbers-modal {
+        padding: 20px;
+        margin: 10px;
+        max-height: 90vh;
+    }
+    
+    .week-numbers-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .week-numbers-grid > div {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    .week-numbers-grid > div > div {
+        grid-column: auto !important;
+    }
+    
+    .day-numbers-card {
+        height: 190px;
+        padding: 12px;
+    }
+    
+    .numbers-actions {
+        flex-direction: column;
+    }
+    
+    .numbers-actions button {
+        width: 100%;
+    }
+    
+    .numbers-actions .btn-secondary {
+        margin-right: 0;
+        order: 1;
+    }
+    
+    .numbers-actions .btn-primary {
+        order: 2;
+    }
+    
+    .numbers-actions .btn-success {
+        order: 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .week-numbers-grid > div {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .numbers-display-grid {
+        gap: 6px;
+    }
+    
+    .number-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .day-numbers-card {
+        height: 180px;
+    }
+}

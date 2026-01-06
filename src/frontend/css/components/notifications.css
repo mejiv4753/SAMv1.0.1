@@ -1,0 +1,280 @@
+/* ==========================
+   MODAL DE NOTIFICACIONES MEJORADO
+   ========================== */
+
+/* ==========================
+   MODAL DE NOTIFICACIONES MEJORADO
+   ========================== */
+
+.notifications-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: none;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    z-index: 1000;
+    padding: 20px; /* Espacio en móviles */
+}
+
+.notification-config {
+    position: relative;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    /* Ya no necesita position: fixed ni transform porque el contenedor lo centra */
+}
+/* Header del modal */
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.notification-header .material-symbols-outlined.large {
+    font-size: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+    color: var(--primary-color);
+}
+
+.notification-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+/* Descripción */
+.notification-description {
+    margin-bottom: 25px;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Configuración actual */
+.current-config-section {
+    margin-bottom: 25px;
+    animation: fadeIn 0.3s ease;
+}
+
+.config-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--status-bg) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border: 1px solid var(--status-border);
+    border-radius: 12px;
+    border-left: 4px solid #10B981;
+}
+
+.config-badge .material-symbols-outlined {
+    color: #10B981;
+    font-size: 24px !important;
+}
+
+.config-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.config-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.config-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Grupo de entrada */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.input-label .material-symbols-outlined {
+    font-size: 18px !important;
+    opacity: 0.8;
+}
+
+.notification-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--card-border);
+    border-radius: 10px;
+    font-size: 15px;
+    background: var(--status-bg);
+    color: var(--text-color);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.notification-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+body.dark-mode .notification-input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 106, 0.1);
+}
+
+/* Acciones */
+.notification-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.notification-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: #2563EB;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: var(--status-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border) !important;
+}
+
+.btn-secondary:hover {
+    background: var(--card-border);
+    transform: translateY(-2px);
+}
+
+.btn-modify {
+    background: #F59E0B;
+    color: white;
+}
+
+.btn-modify:hover {
+    background: #D97706;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Close button mejorado */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #EF4444;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    z-index: 10;
+}
+
+.close-button:hover {
+    background: #DC2626;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Estado de notificaciones mejorado */
+.status-notificaciones {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    background: var(--status-bg);
+    border: 1px solid var(--status-border);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    animation: slideDown 0.3s ease;
+}
+
+.status-notificaciones.success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: #10B981;
+    color: #10B981;
+}
+
+.status-notificaciones.error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #EF4444;
+    color: #EF4444;
+}
+
+.status-notificaciones.info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #3B82F6;
+    color: #3B82F6;
+}
+
+/* Modo oscuro ajustes */
+body.dark-mode .config-badge {
+    background: linear-gradient(135deg, #2A2A3C 0%, rgba(0, 255, 106, 0.1) 100%);
+    border-left-color: #00ff6a;
+}
+
+body.dark-mode .config-badge .material-symbols-outlined {
+    color: #00ff6a;
+}

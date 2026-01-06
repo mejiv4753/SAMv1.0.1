@@ -1,0 +1,80 @@
+/* ==========================
+   INDICADOR DE ESTADO DE CONEXIÓN CON GLOW
+   ========================== */
+
+.connection-card {
+    border: 2px solid #6B7280;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.connection-card.connected {
+    border-color: #10B981;
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 
+                0 0 20px rgba(16, 185, 129, 0.3);
+    animation: glow-green 2s ease-in-out infinite alternate;
+}
+
+.connection-card.disconnected {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.1), 
+                0 0 20px rgba(239, 68, 68, 0.3);
+    animation: glow-red 2s ease-in-out infinite alternate;
+}
+
+.connection-card.connecting {
+    border-color: #F59E0B;
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.1), 
+                0 0 20px rgba(245, 158, 11, 0.3);
+    animation: glow-amber 2s ease-in-out infinite alternate;
+}
+
+.card-status-indicator {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6B7280;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.connection-card.connected .card-status-indicator {
+    background: #10B981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    animation: pulse 2s infinite;
+}
+
+.connection-card.disconnected .card-status-indicator {
+    background: #EF4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+    animation: pulse 2s infinite;
+}
+
+.connection-card.connecting .card-status-indicator {
+    background: #F59E0B;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+    animation: pulse 1.5s infinite;
+}
+
+/* Modo oscuro - ajustes para el glow */
+body.dark-mode .connection-card.connected {
+    border-color: #00ff6a;
+    box-shadow: 0 0 0 1px rgba(0, 255, 106, 0.1), 
+                0 0 20px rgba(0, 255, 106, 0.4);
+}
+
+body.dark-mode .connection-card.disconnected {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.1), 
+                0 0 20px rgba(255, 107, 107, 0.4);
+}
+
+body.dark-mode .connection-card.connecting {
+    border-color: #ffd93d;
+    box-shadow: 0 0 0 1px rgba(255, 217, 61, 0.1), 
+                0 0 20px rgba(255, 217, 61, 0.4);
+}
